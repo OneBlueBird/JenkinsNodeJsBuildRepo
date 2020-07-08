@@ -42,7 +42,7 @@ pipeline
 					sh 'rm -rf /tmp/download'
 
 					echo 'Building docker image...'
-						docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+					sudo sh docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
 						  def app = docker.build("virtualbinaries/hwnodewebapp", ".").push()
 					 }
 				}

@@ -5,32 +5,43 @@ pipeline
 	{
 		stage('SCM')
 		{
-			echo 'Pulling source from Git repo'
-			git branch: '${branch}', url:'https://github.com/OneBlueBird/HWNodeCoreContainer.git'
+			steps{
+				echo 'Pulling source from Git repo'
+				git branch: '${branch}', url:'https://github.com/OneBlueBird/HWNodeCoreContainer.git'
+			}
 		}
 		
 		stage('Build')
 		{
-			echo 'Building...'
-			sh 'npm install'
+			steps{
+				echo 'Building...'
+				sh 'npm install'
+			}
 		}
 		
 		stage('Test')
 		{
-			echo 'Testing...'
+			steps{
+				echo 'Testing...'
+			}
 		}
 		
 		stage('Docker build/push')
 		{
-			echo 'Building docker image...'
-				docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-				  def app = docker.build("virtualbinaries/hwnodewebapp", ".").push()
-			 }
+			steps{
+				echo 'Building docker image...'
+					docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+					  def app = docker.build("virtualbinaries/hwnodewebapp", ".").push()
+				 }
+			}
 		}
 		
 		stage('Deploy')
 		{
-			echo 'Deploying...'
+			steps
+			{
+				echo 'Deploying...'
+			}
 		}	
 	}
 }

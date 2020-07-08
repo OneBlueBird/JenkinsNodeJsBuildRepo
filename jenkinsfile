@@ -1,7 +1,5 @@
 node
 {
-	agent any
-	
 	tools {nodejs "Nodejs"}
 	
 	stage('SCM')

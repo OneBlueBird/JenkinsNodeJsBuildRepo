@@ -1,7 +1,7 @@
-node
+pipeline
 {
-	tools {nodejs "Nodejs"}
-	
+  tools {NodeJS "Nodejs"}
+
 	stage('SCM')
 	{
 		echo 'Pulling source from Git repo'

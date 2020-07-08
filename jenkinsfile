@@ -40,8 +40,6 @@ pipeline
 					sh 'rm -rf /tmp/download/docker/dockerd'
 					sh 'mv /tmp/download/docker/docker* /usr/local/bin/'
 					sh 'rm -rf /tmp/download'
-					sh 'groupadd -g 999 docker'
-					sh 'usermod -aG staff,docker jenkins'
 
 					echo 'Building docker image...'
 						docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {

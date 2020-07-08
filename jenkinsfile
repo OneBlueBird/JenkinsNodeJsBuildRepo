@@ -1,5 +1,9 @@
 node
 {
+	agent any
+	
+	tools {nodejs "Nodejs"}
+	
 	stage('SCM')
 	{
 		echo 'Pulling source from Git repo'

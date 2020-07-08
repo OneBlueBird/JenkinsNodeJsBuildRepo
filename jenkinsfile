@@ -1,6 +1,6 @@
 pipeline
 {
-  tools {NodeJS "Nodejs"}
+    tools {nodejs "Nodejs"}
 
 	stage('SCM')
 	{

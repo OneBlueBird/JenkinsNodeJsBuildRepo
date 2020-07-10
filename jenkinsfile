@@ -34,12 +34,14 @@ pipeline
 			steps{
 				script
 				{
-					sh 'DOCKER_OPTS="-H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock"'
+					def proc = "docker.withRegistry('https://registry.hub.docker.com','dockerhub') { def app = docker.build('virtualbinaries/hwnodewebapp','.').push() }".execute()
 					
-					docker.withRegistry('https://registry.hub.docker.com','dockerhub')
-					{
-						def app = docker.build('virtualbinaries/hwnodewebapp','.').push() 
-					}
+					#sh 'DOCKER_OPTS="-H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock"'
+					
+					#docker.withRegistry('https://registry.hub.docker.com','dockerhub')
+					#{
+					#	def app = docker.build('virtualbinaries/hwnodewebapp','.').push() 
+					#}
 				}
 
 			}

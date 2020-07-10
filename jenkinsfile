@@ -32,19 +32,9 @@ pipeline
 		stage('Docker build/push')
 		{
 			steps{
-				script
+				docker.withRegistry('https://registry.hub.docker.com','dockerhub')
 				{
-					echo 'Installing Docker client now...'
-					sh 'mkdir -p /tmp/download'
-					sh 'curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.03.1-ce.tgz | tar -xz -C /tmp/download'
-					sh 'rm -rf /tmp/download/docker/dockerd'
-					sh 'mv /tmp/download/docker/docker* /usr/local/bin/'
-					sh 'rm -rf /tmp/download'
-					sh 'DOCKER_OPTS="-H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock"'
-
-					echo 'Building docker image...'
-					
-					def proc = "docker.withRegistry('https://registry.hub.docker.com','dockerhub') { def app = docker.build('virtualbinaries/hwnodewebapp','.').push() }".execute()
+					def app = docker.build('virtualbinaries/hwnodewebapp','.').push() 
 				}
 			}
 		}

@@ -44,11 +44,7 @@ pipeline
 
 					echo 'Building docker image...'
 					
-					def sout = new StringBuilder(), serr = new StringBuilder()
 					def proc = "docker.withRegistry('https://registry.hub.docker.com','dockerhub') { def app = docker.build('virtualbinaries/hwnodewebapp','.').push() }".execute()
-					proc.consumeProcessOutput(sout, serr)
-					proc.waitForOrKill(1000)
-					println "out> $sout err> $serr"
 				}
 			}
 		}

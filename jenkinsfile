@@ -32,10 +32,14 @@ pipeline
 		stage('Docker build/push')
 		{
 			steps{
-				docker.withRegistry('https://registry.hub.docker.com','dockerhub')
+				script
 				{
-					def app = docker.build('virtualbinaries/hwnodewebapp','.').push() 
+					docker.withRegistry('https://registry.hub.docker.com','dockerhub')
+					{
+						def app = docker.build('virtualbinaries/hwnodewebapp','.').push() 
+					}
 				}
+
 			}
 		}
 		

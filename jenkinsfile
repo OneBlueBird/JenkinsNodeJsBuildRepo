@@ -44,7 +44,7 @@ pipeline
 
 					echo 'Building docker image...'
 					
-					sh "'docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {\n def app = docker.build("virtualbinaries/hwnodewebapp", ".").push() \n '"
+					sh "'docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {\n def app = docker.build('virtualbinaries/hwnodewebapp', '.').push() \n } '"
 				}
 			}
 		}

@@ -43,7 +43,7 @@ pipeline
 					sh 'DOCKER_OPTS="-H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock"'
 
 					echo 'Building docker image...'
-					sh "docker.withRegistry(https://registry.hub.docker.com,'dockerhub') \n { def app = docker.build('virtualbinaries/hwnodewebapp','.').push() } \n"
+					sh "docker.withRegistry('https://registry.hub.docker.com','dockerhub')"
 				}
 			}
 		}

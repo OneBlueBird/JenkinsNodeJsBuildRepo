@@ -34,9 +34,12 @@ pipeline
 			steps{
 				script
 				{
-					def proc = "docker.withRegistry('https://registry.hub.docker.com','dockerhub') { def app = docker.build('virtualbinaries/hwnodewebapp','.').push() }".execute()
+					echo 'Building docker image...'
+					
+					docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+						  def app = docker.build("virtualbinaries/hwnodewebapp", ".").push()
+					}
 				}
-
 			}
 		}
 		
